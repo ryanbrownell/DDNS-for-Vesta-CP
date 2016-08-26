@@ -32,7 +32,7 @@
 # Place ddns-server.sh into ~/scripts
 #
 # SERVER WITH VISTA CP.
-# Place index.php into /home/{username}/web/{domain name}/public_html (or public_shtml, dependent if you are serving SSL from a different folder)
+# Place index.php into /home/{username}/web/{domain name}/{public_html or public_shtml}/ip (or public_shtml, dependent if you are serving SSL from a different folder)
 #
 # Add the following command to the root user's cron at your frequency of choice:
 # bash ddns-client.sh {URL to index.php} {server domain name} {server root username} {server root password} {vesta username} {domain} {subdomain}
