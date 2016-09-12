@@ -56,5 +56,5 @@ then
 	#ssh -o "StrictHostKeyChecking no" $remoteServerUser@$remoteServer './scripts/ddns-server.sh "$ipAddress" "$vestaUser" "$domain" "$subdomain"' < 
 	ssh -o "StrictHostKeyChecking no" $remoteServerUser@$remoteServer 'bash -s' < ~/scripts/ddns-server.sh $ipAddress $vestaUser $domain $subdomain
 else
-	sshpass -p $remoteServerPass ssh -o "StrictHostKeyChecking no" $remoteServerUser@$remoteServer 'bash -s' < ~/scripts/ddns-server.sh $ipAddress $vestaUser $domain $subdomain		
+	sshpass -p $remoteServerPass ssh -o "StrictHostKeyChecking no" $remoteServerUser@$remoteServer 'bash -s' < ~/scripts/ddns-server.sh $ipAddress $vestaUser $domain $subdomain
 fi
