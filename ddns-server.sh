@@ -27,7 +27,12 @@ ipAddress=$1
 VestaUser=$2
 Domain=$3
 Subdomain=$4
-VestaBinPath="/usr/local/vesta/bin/"
+VESTA="/usr/local/vesta"
+
+#echo $ipAddress
+#echo $VestaUser
+#echo $Domain
+#echo $Subdomain
 
 ## FIND ID OF DNS RECORD
 dnsID=`$VESTA/bin/v-list-dns-records $VestaUser $Domain | awk '\$2 == "'"$Subdomain"'" { print \$1 }'`
@@ -35,24 +40,25 @@ dnsID=`$VESTA/bin/v-list-dns-records $VestaUser $Domain | awk '\$2 == "'"$Subdom
 
 ## CHECK IF RECORD EXISTS
 if [ -z "$dnsID" ]
-        then
-                ## Create new record
-				#echo "No Record Was Found... Created a New One"
-				$VESTA/bin/v-add-dns-record $VestaUser $Domain $Subdomain A $ipAddress
-        else
-			curVal=`$VESTA/bin/v-list-dns-records $VestaUser $Domain | awk '\$2 == "'"$Subdomain"'" { print \$4 }'`
-			#echo "Current DNS Value: $curVal"
-			#echo "Current IP Address: $ipAddress"
-			if [ "$curVal" == "$ipAddress" ]
-				then
-					#echo "Current IP Matches the current DNS Record. No update required"
-				else
-					#echo "Old Record Found... Updating"
-					## Delete record
-					$VESTA/bin/v-delete-dns-record $VestaUser $Domain $dnsID
-					## Create new record
-					$VESTA/bin/v-add-dns-record $VestaUser $Domain $Subdomain A $ipAddress
-					#echo "Record updated"
-			fi
+then
+	## Create new record
+	echo "No Record Was Found... Created a New One"
+	$VESTA/bin/v-add-dns-record $VestaUser $Domain $Subdomain A $ipAddress
+else
+	curVal=`$VESTA/bin/v-list-dns-records $VestaUser $Domain | awk '\$2 == "'"$Subdomain"'" { print \$4 }'`
+	#echo "Current DNS Value: $curVal"
+	#echo "Current IP Address: $ipAddress"
+	if [ "$curVal" == "$ipAddress" ]
+	then
+		echo "Current IP Matches the current DNS Record. No update required"
+	else
+		echo "Old Record Found... Updating"
+		## Delete record
+		$VESTA/bin/v-delete-dns-record $VestaUser $Domain $dnsID
+		## Create new record
+		$VESTA/bin/v-add-dns-record $VestaUser $Domain $Subdomain A $ipAddress
+		echo "Record updated"
+	fi
 fi
 #echo "Update Complete"
+hostname
