@@ -2,7 +2,7 @@
 
 # Simple Dynamic DNS Script for VESTA CP.
 #
-#  Copyright © 2016 Ryan Brownell
+#  Copyright ©2016 Ryan Brownell
 #  ryan@ryanbrownell.com
 #
 #  This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,8 @@
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ## WARNING
-# One means of executing this method involves the storing of a password in plaintext in the user's crontab.
+# One means of executing this method involves the storing of a password in plaintext
+# in the user's crontab.
 # Ideally, you would use an RSA key to connect instead for better security.
 # You have been warned.
 #
@@ -28,14 +29,18 @@
 # Must have an ssh client installed.
 # Must have sshpass installed if you are using password authentication.
 # Place ddns-client.sh (this file) into ~/scripts
-# Place ddns-server.sh into ~/scripts
 #
 # SERVER WITH VISTA CP.
-# Place index.php into /home/{username}/web/{domain name}/{public_html or public_shtml}/ip (or public_shtml, dependent if you are serving SSL from a different folder)
+# Place index.php into /home/{username}/web/{domain name}/{public_html or public_shtml}/ip 
+# (or public_shtml, dependent if you are serving SSL from a different folder)
+# Place ddns-server.sh into ~/scripts of your admin user home directory.
+# Edit ~/.bashrc in the admin user home directory to include the contents
+# of the included .bashrc file.
 #
 # Add the following command to the user's cron at your frequency of choice:
 # bash ddns-client.sh {URL to index.php} {server domain name} {vesta username} {domain} {subdomain} {server admin username} {server admin password} 
-# You only need to include the server admin password if you did not set up an ssh key. See: http://www.linuxproblem.org/art_9.html for more information.
+# You only need to include the server admin password if you did not set up an ssh key.
+# See: http://www.linuxproblem.org/art_9.html for more information.
 
 #Establish Variables
 ipPingAddress=$1
@@ -48,13 +53,12 @@ remoteServerPass=$7
 
 ## GET WAN IP ADDRESS 
 ipAddress=`curl -k -s $ipPingAddress`
+#echo "IP Address: $ipAddress"
 
 ## Send WAN IP ADDRESS TO VESTA CP SERVER FOR PROCESSING
 if [ -z "$remoteServerPass" ]
 then
-	#ssh $remoteServerUser@$remoteServer "~/scripts/ddns-server.sh $ipAddress $vestaUser $domain $subdomain"
-	#ssh -o "StrictHostKeyChecking no" $remoteServerUser@$remoteServer './scripts/ddns-server.sh "$ipAddress" "$vestaUser" "$domain" "$subdomain"' < 
-	ssh -o "StrictHostKeyChecking no" $remoteServerUser@$remoteServer 'bash -s' < ~/scripts/ddns-server.sh $ipAddress $vestaUser $domain $subdomain
+	ssh -o "StrictHostKeyChecking no" $remoteServerUser@$remoteServer "~/scripts/ddns-server.sh $ipAddress $vestaUser $domain $subdomain"
 else
-	sshpass -p $remoteServerPass ssh -o "StrictHostKeyChecking no" $remoteServerUser@$remoteServer 'bash -s' < ~/scripts/ddns-server.sh $ipAddress $vestaUser $domain $subdomain
+	sshpass -p $remoteServerPass ssh -o "StrictHostKeyChecking no" $remoteServerUser@$remoteServer "~/scripts/ddns-server.sh $ipAddress $vestaUser $domain $subdomain"
 fi

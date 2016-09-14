@@ -2,7 +2,7 @@
 #
 # Simple Dynamic DNS Script for VESTA CP.
 #
-#  Copyright © 2016 Ryan Brownell
+#  Copyright ©2016 Ryan Brownell
 #  ryan@ryanbrownell.com
 #
 #  This program is free software: you can redistribute it and/or modify
@@ -27,7 +27,7 @@ ipAddress=$1
 VestaUser=$2
 Domain=$3
 Subdomain=$4
-VESTA="/usr/local/vesta"
+#VESTA="/usr/local/vesta"
 
 #echo $ipAddress
 #echo $VestaUser
@@ -42,7 +42,7 @@ dnsID=`$VESTA/bin/v-list-dns-records $VestaUser $Domain | awk '\$2 == "'"$Subdom
 if [ -z "$dnsID" ]
 then
 	## Create new record
-	echo "No Record Was Found... Created a New One"
+	#echo "No Record Was Found... Created a New One"
 	$VESTA/bin/v-add-dns-record $VestaUser $Domain $Subdomain A $ipAddress
 else
 	curVal=`$VESTA/bin/v-list-dns-records $VestaUser $Domain | awk '\$2 == "'"$Subdomain"'" { print \$4 }'`
@@ -50,15 +50,15 @@ else
 	#echo "Current IP Address: $ipAddress"
 	if [ "$curVal" == "$ipAddress" ]
 	then
-		echo "Current IP Matches the current DNS Record. No update required"
+		#echo "Current IP Matches the current DNS Record. No update required"
+		:
 	else
-		echo "Old Record Found... Updating"
+		#echo "Old Record Found... Updating"
 		## Delete record
 		$VESTA/bin/v-delete-dns-record $VestaUser $Domain $dnsID
 		## Create new record
 		$VESTA/bin/v-add-dns-record $VestaUser $Domain $Subdomain A $ipAddress
-		echo "Record updated"
+		#echo "Record updated"
 	fi
 fi
 #echo "Update Complete"
-hostname

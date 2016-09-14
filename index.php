@@ -2,7 +2,7 @@
 # Simple Visitor External Internet Protocol Address Return.
 # Returns the visitor's IP address in simple text format.
 #
-#  Copyright © 2016 Ryan Brownell
+#  Copyright ©2016 Ryan Brownell
 #  ryan@ryanbrownell.com
 #
 #  This program is free software: you can redistribute it and/or modify
