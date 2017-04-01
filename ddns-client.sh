@@ -48,8 +48,9 @@ remoteServer=$2
 vestaUser=$3
 domain=$4
 subdomain=$5
-remoteServerUser=$6
-remoteServerPass=$7
+recordType=$6
+remoteServerUser=$7
+remoteServerPass=$8
 
 ## GET WAN IP ADDRESS 
 ipAddress=`curl -k -s $ipPingAddress`
@@ -58,7 +59,7 @@ ipAddress=`curl -k -s $ipPingAddress`
 ## Send WAN IP ADDRESS TO VESTA CP SERVER FOR PROCESSING
 if [ -z "$remoteServerPass" ]
 then
-	ssh -o "StrictHostKeyChecking no" $remoteServerUser@$remoteServer "~/scripts/ddns-server.sh $ipAddress $vestaUser $domain $subdomain"
+	ssh -o "StrictHostKeyChecking no" $remoteServerUser@$remoteServer "~/scripts/ddns-server.sh $ipAddress $vestaUser $domain $subdomain $recordType"
 else
-	sshpass -p $remoteServerPass ssh -o "StrictHostKeyChecking no" $remoteServerUser@$remoteServer "~/scripts/ddns-server.sh $ipAddress $vestaUser $domain $subdomain"
+	sshpass -p $remoteServerPass ssh -o "StrictHostKeyChecking no" $remoteServerUser@$remoteServer "~/scripts/ddns-server.sh $ipAddress $vestaUser $domain $subdomain $recordType"
 fi

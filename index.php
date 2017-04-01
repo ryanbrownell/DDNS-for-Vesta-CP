@@ -23,6 +23,10 @@
 # Add this file to the 'ip' directory.
 # Visit http{s}://{your website domain name here}/ip/ and see your External Internet Protocol Address displayed as plain text.
 
-echo $_SERVER['REMOTE_ADDR'];
+$ipAddress = $_SERVER['REMOTE_ADDR'];
+if (array_key_exists('HTTP_X_FORWARDED_FOR', $_SERVER)) {
+    $ipAddress = array_pop(explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']));
+	echo $ipAddress;
+}
 
 ?>
