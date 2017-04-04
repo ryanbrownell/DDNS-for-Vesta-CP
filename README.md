@@ -18,7 +18,7 @@
 ```
 bash ddns-client.sh {URL to index.php} {server domain name} {vesta username} {domain} {subdomain} {record type} {OPTIONAL server admin username} {OPTIONAL server admin password}
 ```
-- The optional fields and highly discouraged. SSH key authentication is strongly recommended.
+- The optional fields and highly discouraged. **SSH key authentication is strongly recommended.**
 
 ### System with the static public IP address ###
 - An installation Vesta Control Panel configured with the domain name you wish to use.
