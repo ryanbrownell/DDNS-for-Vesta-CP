@@ -1,7 +1,5 @@
 # Dynamic DNS for Vista Control Panel #
 
-[DEMO HERE](http://cristurm.github.io/nyan-cat/)
-
 ## Requirements ##
 
 1. A server with a static public IP address running [Vesta Control Panel](http://vestacp.com)
