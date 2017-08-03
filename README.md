@@ -30,3 +30,7 @@ bash ddns-client.sh {URL to index.php} {server domain name} {vesta username} {do
 ## Warning ##
 One means of using this script involves the storing of a password in plaintext in the user's crontab. This practice is generally seen as insecure.
 Ideally, you would use an RSA key to connect instead for better security.
+
+## To Do ##
+- Reduce the requirements on the client side.
+-- 
