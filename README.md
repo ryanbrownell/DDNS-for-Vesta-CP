@@ -32,5 +32,4 @@ One means of using this script involves the storing of a password in plaintext i
 Ideally, you would use an RSA key to connect instead for better security.
 
 ## To Do ##
-- Reduce the requirements on the client side.
--- 
+- Reduce the requirements on the client side. Such that all that would be required to call is a simple CURL command to a specific URL accompanied with a token.
