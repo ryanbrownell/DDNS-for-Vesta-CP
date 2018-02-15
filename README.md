@@ -1,3 +1,6 @@
+## Abandoned ##
+This project is likely going to be abandoned with the approval of a pull request to add the same functionality to Vesta Control Panel itself. If you would help get this pushed into Vesta, please check out the pull request found at https://github.com/serghey-rodin/vesta/pull/1477 and test and add comments indicating that you would use such a feature.
+
 # Dynamic DNS for Vista Control Panel #
 
 ## Requirements ##
